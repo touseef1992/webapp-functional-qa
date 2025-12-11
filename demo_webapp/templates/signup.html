@@ -1,15 +1,19 @@
 {% extends "base.html" %}
+
 {% block content %}
   <h2>Sign up</h2>
   <form method="POST" style="margin-top:12px;">
     <div class="form-row">
       <label>Email</label>
-      <input type="text" name="email" placeholder="you@example.com" />
+      <input type="text" name="email" placeholder="you@example.com" required />
     </div>
+
     <div class="form-row">
       <label>Password</label>
-      <input type="password" name="password" placeholder="Create a strong password" />
+      <input type="password" name="password" placeholder="Create a strong password" required minlength="8" />
+      <div class="small-muted">Password must be at least 8 characters.</div>
     </div>
+
     <div style="display:flex; gap:10px; align-items:center; margin-top:10px;">
       <button class="primary" type="submit">Sign Up</button>
       <a class="link" href="{{ url_for('login') }}">Already have an account? Login</a>
