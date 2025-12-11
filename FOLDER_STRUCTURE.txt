@@ -1,0 +1,12 @@
+Folder structure generated at /mnt/data/project_option_b
+
+- testplan/
+  - testplan.md
+- testcases.xlsx
+- bugreports.csv
+- jira_tickets/
+  - JIRA-1.md ... JIRA-5.md
+- reports/
+  - execution-summary.md
+- README.md
+- evidence/ (create locally and add screenshots/videos)
