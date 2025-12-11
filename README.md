@@ -1,3 +1,15 @@
+
+# 🧪 Web App Functional QA Project  
+
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![Tests](https://img.shields.io/badge/test%20cases-60+-blue)
+![Bugs](https://img.shields.io/badge/bugs-tracked-orange)
+![Coverage](https://img.shields.io/badge/evidence-available-green)
+![Platform](https://img.shields.io/badge/workflow-GitHub%20Projects-purple)
+![Made With](https://img.shields.io/badge/skills-QA%20%7C%20Testing%20%7C%20Automation-blue)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
+
 # Web App Functional QA Project  
 A complete end-to-end QA documentation and testing project demonstrating functional testing, bug reporting, exploratory testing, and evidence-based validation for a sample web application.
 
@@ -28,6 +40,8 @@ This project validates the core functionality of a demo web application that inc
 
 ## Test Artifacts Included
 
+![Test Plan](https://img.shields.io/badge/Test%20Plan-available-blue)
+
 ### **1. Test Plan**
 Found in:  
 `/testplan/testplan.md`  
@@ -40,6 +54,8 @@ Covers:
 - Deliverables  
 
 ---
+![Test Cases](https://img.shields.io/badge/Test%20Cases-Excel%20Sheet-brightgreen)
+
 
 ### **2. Test Cases**
 `testcases.xlsx` contains **60 detailed test cases**, including:
@@ -62,6 +78,8 @@ Each test case includes:
 - Evidence reference  
 
 ---
+![Bug Reports](https://img.shields.io/badge/Bug%20Reports-GitHub%20Issues-red)
+
 
 ### **3. Bug Reports**
 All bugs found during execution are listed in:
@@ -77,6 +95,8 @@ Severity levels used:
 - Low  
 
 ---
+![Evidence](https://img.shields.io/badge/Screenshots-attached-orange)
+
 
 ### **4. Evidence Screenshots**
 Screenshots demonstrating:
