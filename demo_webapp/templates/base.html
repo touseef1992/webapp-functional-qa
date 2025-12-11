@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Demo App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="header">
+      <div class="logo"><img src="{{ url_for('static', filename='images/logo.svg') }}" alt="logo" style="width:44px; height:44px;"></div>
+      <div>
+        <div class="title">Demo Web App</div>
+        <div class="small-muted">Signup · Login · Dashboard</div>
+      </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-list">
+        {% for category, msg in messages %}
+          <li class="flash-item {{ 'success' if category=='success' else 'error' }}">{{ msg }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <div class="card">
+      {% block content %}{% endblock %}
+    </div>
+
+    <div class="footer-note">Built for QA demo — use test accounts to exercise flows.</div>
+  </div>
+</body>
+</html>
