@@ -1,5 +1,5 @@
 
-# 🧪 Web App Functional QA Project  
+# Web App Functional QA Project  
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![Tests](https://img.shields.io/badge/test%20cases-60+-blue)
@@ -163,7 +163,7 @@ This provides recruiters with a realistic view of QA workflow and documentation 
 **Touseef Ahmed**  
 Aspiring AI-Assisted Automation Tester  
 GitHub: https://github.com/touseef1992  
-LinkedIn: *(add your link here)*  
+LinkedIn: linkedin.com/in/touseef-ahmed-6052a666
 
 ---
 
