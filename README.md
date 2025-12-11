@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Web App Functional QA — Demo Web App
 
 This repository contains QA artifacts for the Demo Web App Functional Testing project.
@@ -20,3 +21,6 @@ This repository contains QA artifacts for the Demo Web App Functional Testing pr
 ## Notes
 - This is a beginner-friendly QA repo. Follow the Test Plan for scope and schedule.
 - If you want, I can help push these files to your GitHub repository.
+=======
+# webapp-functional-qa
+>>>>>>> 1c94637ef05719600a0586b7d5139a4488b1c550
