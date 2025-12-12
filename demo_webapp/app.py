@@ -16,19 +16,28 @@ def signup():
         email = request.form.get("email", "").strip()
         password = request.form.get("password", "").strip()
 
-        # Validation examples
+        # Server-side validations (IMPORTANT)
         if not email:
             flash("Email is required", "error")
             return redirect(url_for("signup"))
-        
+
         if "@" not in email:
             flash("Invalid email format", "error")
+            return redirect(url_for("signup"))
+
+        # NEW: password validation
+        if not password:
+            flash("Password is required", "error")
+            return redirect(url_for("signup"))
+
+        if len(password) < 8:
+            flash("Password must be at least 8 characters", "error")
             return redirect(url_for("signup"))
 
         if email in users:
             flash("Email already exists", "error")
             return redirect(url_for("signup"))
-        
+
         users[email] = password
         flash("Signup successful! Please login.", "success")
         return redirect(url_for("login"))
