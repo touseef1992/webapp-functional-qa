@@ -57,16 +57,15 @@ Covers:
 ![Test Cases](https://img.shields.io/badge/Test%20Cases-Excel%20Sheet-brightgreen)
 
 
-### **2. Test Cases**
-`testcases.xlsx` contains **60 detailed test cases**, including:
+## 📋 Test Cases
 
-- Functional Tests  
-- Negative Tests  
-- Security Tests (XSS, input sanitization)  
-- Boundary Tests  
-- Usability Tests  
-- Responsive Tests  
-- Regression Scenarios  
+All detailed manual test cases are documented here: /testcases/Project4_Complete_50_Detailed_TestCases.xlsx
+
+This file contains:
+- 50 end-to-end functional test cases
+- URL-specific steps for local Flask app
+- Preconditions, execution steps, and expected results
+ 
 
 Each test case includes:
 - Preconditions  
