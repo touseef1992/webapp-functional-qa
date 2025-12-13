@@ -35,14 +35,13 @@ This project validates the core functionality of a demo web application that inc
 - Security tests (including XSS checks)  
 - UI & Usability checks  
 
-
 ---
 
 ## Test Artifacts Included
 
 ![Test Plan](https://img.shields.io/badge/Test%20Plan-available-blue)
 
-### **1. Test Plan**
+###  Test Plan
 Found in:  
 `/testplan/testplan.md`  
 Covers:
@@ -59,14 +58,15 @@ Covers:
 
 ## 📋 Test Cases
 
-All detailed manual test cases are documented here: /testcases/Project4_Complete_50_Detailed_TestCases.xlsx
+All detailed manual test cases are documented in the following file: 
+📄 `testcases/Project4_Complete_50_Detailed_TestCases.xlsx`
 
 This file contains:
 - 50 end-to-end functional test cases
 - URL-specific steps for local Flask app
 - Preconditions, execution steps, and expected results
+- Coverage for Signup, Login, Dashboard, and UI validation
  
-
 Each test case includes:
 - Preconditions  
 - Steps  
@@ -79,13 +79,24 @@ Each test case includes:
 ---
 ![Bug Reports](https://img.shields.io/badge/Bug%20Reports-GitHub%20Issues-red)
 
+## 🐞 Bug Reporting
 
-### **3. Bug Reports**
-All bugs found during execution are listed in:
+Defects identified during testing are documented in two ways:
 
-- `bugreports.csv`  
-- `/jira_tickets/` (Jira-style writeups)  
-- GitHub Issues → https://github.com/touseef1992/webapp-functional-qa/issues  
+1. CSV-based bug reports:
+   - 📄 `bugreports/Project4_BugReports_Mapped.csv`
+
+2. GitHub Issues:
+   - Used for live tracking, status updates, and discussion
+   All bugs discovered are logged under: https://github.com/touseef1992/webapp-functional-qa/issues
+
+Each issue includes:
+- Summary  
+- Steps to reproduce  
+- Expected vs. Actual behaviour  
+- Severity & Priority labels  
+- Screenshots  
+- Suggested fix  
 
 Severity levels used:
 - Critical  
@@ -97,7 +108,7 @@ Severity levels used:
 ![Evidence](https://img.shields.io/badge/Screenshots-attached-orange)
 
 
-### **4. Evidence Screenshots**
+### Evidence Screenshots**
 Screenshots demonstrating:
 - PASS cases  
 - FAIL cases  
@@ -106,28 +117,30 @@ Screenshots demonstrating:
 - UI issues  
 
 All evidence is located here:
-
-
-
 Each screenshot is referenced inside GitHub Issues.
 
 ---
+## 📊 Test Execution Summary
 
-## GitHub Issues as Live Bug Tracker
+A detailed execution summary is available here:
 
-All bugs discovered are logged under:
+📄 `reports/Execution_Summary_Project4.txt`
 
-https://github.com/touseef1992/webapp-functional-qa/issues
+It includes:
+- Test execution metrics
+- Pass / Fail / Blocked counts
+- Bug severity distribution
+- Overall QA assessment
 
-Each issue includes:
-- Summary  
-- Steps to reproduce  
-- Expected vs. Actual behaviour  
-- Severity & Priority labels  
-- Screenshots  
-- Suggested fix  
+## 🤖 AI-Assisted Testing
 
-This provides recruiters with a realistic view of QA workflow and documentation skills.
+AI was used to enhance test coverage by:
+- Generating boundary value scenarios
+- Identifying missing negative cases
+- Suggesting risk-based tests
+
+📄 AI test artifacts:
+- `ai_generated/AI_Assisted_Test_Artifacts_Project4.xlsx`
 
 ---
 
