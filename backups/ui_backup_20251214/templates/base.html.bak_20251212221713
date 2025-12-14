@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>{% block title %}Demo Web App{% endblock %}</title>
+    <style>
+      :root {
+        --bg: #0f1113;
+        --card: #121416;
+        --muted-dark: rgba(255,255,255,0.55);
+        --text: #e6eef6;
+        --accent: #3ea6ff;
+      }
+      html,body { height:100%; margin:0; background:var(--bg); color:var(--text); font-family: "Segoe UI", Roboto, Arial, sans-serif; }
+      .app-shell { max-width:1100px; margin:32px auto; padding:18px; }
+      header.app-header { display:flex;justify-content:center;align-items:center;position:relative;margin-bottom:18px }
+      .brand { display:flex;align-items:center;gap:12px; }
+      /* inline svg logo container */
+      .brand .logo { width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#0e1418,#111316);display:flex;align-items:center;justify-content:center;box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
+      .brand .title { font-weight:700;color:var(--accent);font-size:18px }
+      .top-controls { position:absolute;right:12px;top:10px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding:6px }
+      .control-row { display:flex;gap:8px;align-items:center; }
+      /* make label/value the same font-size for visual uniformity */
+      .control-label { font-size:13px;color:var(--muted-dark); min-width:48px; text-align:right; }
+      .control-value { font-size:13px; color:var(--text); font-weight:600; }
+      .theme-btn { background:transparent;border:0;color:var(--muted-dark);cursor:pointer;font-size:13px;display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:6px }
+      .card { background:var(--card); border-radius:12px; box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
+    </style>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <!-- inline stock SVG logo (no external file) -->
+        <div class="logo" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Demo logo">
+            <rect x="0" y="0" width="24" height="24" rx="5" fill="#0b2430"></rect>
+            <path d="M4 13 L9 8 L13 12 L20 6" stroke="#3ea6ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div style="text-align:left">
+          <div class="title">Demo Web App</div>
+          <div style="font-size:12px;color:var(--muted-dark)">Signup · Login · Dashboard</div>
+        </div>
+      </div>
+
+      <div class="top-controls" role="region" aria-label="Top controls">
+        <div class="control-row" role="group" aria-label="Theme control">
+          <div class="control-label">Theme</div>
+          <button id="theme-toggle" class="theme-btn" aria-pressed="true" aria-label="Toggle theme">
+            <span id="theme-icon">🌙</span> <span id="theme-label">Dark</span>
+          </button>
+        </div>
+
+        <div class="control-row" role="status" aria-live="polite">
+          <div class="control-label">Date</div>
+          <div id="top-date" class="control-value">-</div>
+        </div>
+
+        <div class="control-row" role="status" aria-live="polite">
+          <div class="control-label">Time</div>
+          <div id="top-clock" class="control-value">-</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      {% block content %}{% endblock %}
+    </main>
+
+    <script>
+      // Theme toggle behaviour (same as before)
+      const tBtn = document.getElementById('theme-toggle');
+      const tIcon = document.getElementById('theme-icon');
+      const tLabel = document.getElementById('theme-label');
+      tBtn.addEventListener('click', ()=> {
+        if (tBtn.getAttribute('aria-pressed') === 'true') {
+          tBtn.setAttribute('aria-pressed','false');
+          tIcon.textContent = '🌤️';
+          tLabel.textContent = 'Light';
+          document.documentElement.style.setProperty('--bg','#f5f7fa');
+          document.documentElement.style.setProperty('--card','#ffffff');
+          document.documentElement.style.setProperty('--muted-dark','rgba(0,0,0,0.5)');
+          document.documentElement.style.setProperty('--text','#05101a');
+          document.documentElement.style.setProperty('--accent','#1e90ff');
+        } else {
+          tBtn.setAttribute('aria-pressed','true');
+          tIcon.textContent = '🌙';
+          tLabel.textContent = 'Dark';
+          document.documentElement.style.setProperty('--bg','#0f1113');
+          document.documentElement.style.setProperty('--card','#121416');
+          document.documentElement.style.setProperty('--muted-dark','rgba(255,255,255,0.55)');
+          document.documentElement.style.setProperty('--text','#e6eef6');
+          document.documentElement.style.setProperty('--accent','#3ea6ff');
+        }
+      });
+
+      // Live clock starter (same as before)
+      function startLiveClock(dateStr, timeStr) {
+        if (!dateStr || !timeStr) return;
+        const dt = new Date(dateStr + 'T' + timeStr);
+        function tick() {
+          dt.setSeconds(dt.getSeconds() + 1);
+          const pad = (n)=> (n<10? '0'+n : ''+n);
+          const YYYY = dt.getFullYear();
+          const MM = pad(dt.getMonth()+1);
+          const DD = pad(dt.getDate());
+          const hh = pad(dt.getHours());
+          const mm = pad(dt.getMinutes());
+          const ss = pad(dt.getSeconds());
+          const dateEl = document.getElementById('top-date');
+          const timeEl = document.getElementById('top-clock');
+          if (dateEl) dateEl.textContent = `${YYYY}-${MM}-${DD}`;
+          if (timeEl) timeEl.textContent = `${hh}:${mm}:${ss}`;
+        }
+        tick();
+        setInterval(tick, 1000);
+      }
+
+      if (window.serverDate && window.serverTime) {
+        startLiveClock(window.serverDate, window.serverTime);
+      }
+    </script>
+  <script src="/static/js/donut_fix.js"></script>
+</body>
+</html>
+
