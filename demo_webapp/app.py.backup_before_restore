@@ -1,0 +1,75 @@
+# demo_webapp/app.py
+from flask import Flask, render_template
+from datetime import date, datetime
+
+app = Flask(__name__, template_folder="templates", static_folder="static")
+
+@app.route("/")
+def index():
+    return "<p>Open <a href='/dashboard'>/dashboard</a></p>"
+
+@app.route("/dashboard")
+def dashboard():
+    # --- sample data (stub) ---
+    sessions = {
+        'north_america': 14,
+        'europe': 10,
+        'india': 6,
+        'sea': 2,
+        'total': 32
+    }
+
+    devices = {
+        'desktop': 18,
+        'mobile': 12,
+        'tablet': 2
+    }
+
+    browsers = [
+        {'name': 'Chrome', 'pct': '47%'},
+        {'name': 'Firefox', 'pct': '25%'},
+        {'name': 'Edge', 'pct': '16%'},
+        {'name': 'Safari', 'pct': '12%'},
+    ]
+
+    activity = [
+        {'title': 'New signup', 'detail': 'alice@example.com', 'when': '2025-12-12 16:41'},
+        {'title': 'Login', 'detail': 'test1@example.com', 'when': '2025-12-12 15:53'},
+        {'title': 'Failed login', 'detail': 'unknown@example.com', 'when': '2025-12-12 14:53'},
+    ]
+
+    recent_signups = [
+        {'email': 'alice@example.com', 'when': '2025-12-12 16:41'},
+        {'email': 'test1@example.com',  'when': '2025-12-12 15:53'},
+        {'email': 'unknown@example.com','when': '2025-12-12 14:53'},
+    ]
+
+    total_users = 3
+    active_sessions = 4
+    signups_today = 2
+    open_issues = 5
+
+    theme = 'Dark'
+    today_date = date.today().isoformat()
+    now_time = datetime.now().strftime("%H:%M:%S")
+
+    # --- render passing all keys the template expects ---
+    return render_template(
+        "dashboard.html",
+        sessions=sessions,
+        devices=devices,
+        browsers=browsers,
+        activity=activity,
+        recent_signups=recent_signups,
+        total_users=total_users,
+        active_sessions=active_sessions,
+        signups_today=signups_today,
+        open_issues=open_issues,
+        theme=theme,
+        today_date=today_date,
+        now_time=now_time,
+    )
+
+if __name__ == "__main__":
+    # dev server
+    app.run(debug=True, port=5000)

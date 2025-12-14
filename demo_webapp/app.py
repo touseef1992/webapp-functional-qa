@@ -69,10 +69,22 @@ def login():
 @app.route("/dashboard")
 def dashboard():
     if "user" not in session:
-        flash("Please login first", "error")
         return redirect(url_for("login"))
-    
-    return render_template("dashboard.html", user=session["user"])
+
+    # Temporary demo stats for UI (QA-safe)
+    stats = {
+        "total_users": 3,
+        "active_sessions": 4,
+        "signups_today": 2,
+        "open_issues": 5,
+        "total_sessions": 32
+    }
+
+    return render_template(
+        "dashboard.html",
+        user=session["user"],
+        stats=stats
+    )
 
 
 @app.route("/logout")

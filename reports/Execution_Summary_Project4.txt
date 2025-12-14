@@ -1,0 +1,40 @@
+
+PROJECT 4 – EXECUTION SUMMARY
+
+Application: Flask Demo Web App (Signup / Login / Dashboard)
+Environment: Localhost (http://127.0.0.1:5000)
+Testing Type: Manual Functional Testing
+
+TEST EXECUTION METRICS
+----------------------
+Total Test Cases Designed : 50
+Total Test Cases Executed : 50
+
+Passed   : 42
+Failed   : 5
+Blocked  : 3
+
+BUG STATISTICS
+--------------
+Critical : 1
+High     : 3
+Medium   : 1
+Low      : 1
+
+Fixed    : 3
+Open     : 3
+
+QUALITY ASSESSMENT
+------------------
+• Core authentication flow works as expected after fixes.
+• Validation gaps were identified and partially fixed.
+• Session handling and back-button behavior need improvement.
+• UI consistency issues are minor and cosmetic.
+
+OVERALL CONCLUSION
+------------------
+The application is functionally stable for demo purposes.
+Critical issues related to authentication and authorization
+were identified and addressed. The project successfully
+demonstrates end-to-end manual QA skills including
+test design, execution, defect reporting, and analysis.
