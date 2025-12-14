@@ -31,6 +31,27 @@
   gap: 32px;
 }
 
+.dashboard-header {
+  margin: 24px 0 28px;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin-bottom: 6px;
+}
+
+.dashboard-subtitle {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.dashboard-subtitle span {
+  color: #d1d5db;
+  font-weight: 500;
+}
+
 /* ===== HEADER ===== */
 .header-card {
   display: flex;
@@ -311,44 +332,64 @@
 .btn-secondary:hover {
   background: rgba(255,255,255,0.12);
 }
-/* =========================
-   AUTH (LOGIN / SIGNUP)
-========================= */
+/* ============================
+   AUTH PAGE LAYOUT
+   ============================ */
 
 .auth-wrapper {
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 220px); /* tighter height to avoid scrolling */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 16px;
+  padding: 16px;
 }
+
+/* ============================
+   AUTH CARD (Login & Signup)
+   ============================ */
 
 .auth-card {
   width: 100%;
   max-width: 420px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  min-height: 420px; /* forces identical height */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  padding: 32px 28px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
+/* ============================
+   TITLES & TEXT
+   ============================ */
+
 .auth-title {
-  font-size: 26px;
+  font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 6px;
 }
 
 .auth-subtitle {
-  font-size: 14px;
-  color: #9ca3af;
-  margin-bottom: 24px;
+  font-size: 0.9rem;
+  color: #9aa4b2;
+  margin-bottom: 20px;
 }
+
+/* ============================
+   FORM
+   ============================ */
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
 .form-group {
@@ -358,18 +399,17 @@
 }
 
 .form-group label {
-  font-size: 13px;
-  color: #cbd5f5;
+  font-size: 0.85rem;
+  color: #c9d1d9;
 }
 
 .form-group input {
   height: 42px;
   padding: 0 12px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(0,0,0,0.4);
-  color: #fff;
-  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
 }
 
 .form-group input:focus {
@@ -377,35 +417,280 @@
   border-color: #3b82f6;
 }
 
+/* ============================
+   PRIMARY BUTTON
+   ============================ */
+
 .btn-primary {
-  margin-top: 8px;
+  margin-top: 10px;
   height: 44px;
   border-radius: 10px;
-  background: #3b82f6;
   border: none;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 500;
+  background: #3b82f6;
+  color: #ffffff;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .btn-primary:hover {
   background: #2563eb;
 }
 
+/* ============================
+   FOOTER LINKS
+   ============================ */
+
 .auth-footer {
-  margin-top: 22px;
+  margin-top: 18px;
   text-align: center;
-  font-size: 13px;
-  color: #9ca3af;
+  font-size: 0.85rem;
+  color: #9aa4b2;
 }
 
 .auth-footer a {
-  margin-left: 6px;
   color: #3b82f6;
   text-decoration: none;
+  margin-left: 4px;
 }
 
 .auth-footer a:hover {
   text-decoration: underline;
+}
+
+/* =========================
+   Flash Messages (Timed)
+   ========================= */
+
+.flash-container {
+    position: fixed;
+    top: 72px; /* aligned just below header */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.flash-message {
+    min-width: 280px;
+    max-width: 420px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: flash-in 0.4s ease forwards;
+}
+
+/* Variants */
+.flash-success {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.flash-error {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.flash-warning {
+    background: rgba(234, 179, 8, 0.15);
+    color: #facc15;
+    border: 1px solid rgba(234, 179, 8, 0.35);
+}
+
+.flash-info {
+    background: rgba(59, 130, 246, 0.15);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+/* Exit animation */
+.flash-hide {
+    animation: flash-out 0.4s ease forwards;
+}
+
+@keyframes flash-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flash-out {
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* ================================
+   DASHBOARD HEADER FIX (NO CARD)
+   ================================ */
+
+.dashboard-header {
+  margin: 0 0 16px 0 !important;
+  padding: 0 !important;
+}
+
+.dashboard-title {
+  margin: 0 0 6px 0 !important;
+}
+
+.dashboard-subtitle {
+  margin: 0 !important;
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Remove phantom top spacing */
+.dashboard {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+/* ================================
+   BREADCRUMB + LOGOUT ROW
+   ================================ */
+
+.breadcrumb-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  color: #4da3ff;
+  text-decoration: none;
+}
+
+.breadcrumb .active {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.disabled-link {
+  color: rgba(255,255,255,0.4);
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Logout button alignment */
+.logout-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+.logout-form {
+    display: inline-block;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #7db9ff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+    background: rgba(125,185,255,0.1);
+    border-color: #7db9ff;
+}
+/* =========================
+   SVG Logo Styling
+========================= */
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-svg {
+  flex-shrink: 0;
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  line-height: 1.1;
+}
+
+.app-subtitle {
+  font-size: 12px;
+  color: #9aa4af;
+  margin-top: 2px;
+}
+/* ================================
+   THEME TOGGLE BUTTON
+================================ */
+
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: inherit;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s ease, border 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.theme-toggle-btn span {
+  line-height: 1;
+}
+
+/* Light theme overrides */
+body.light-theme {
+  background: #f4f6f8;
+  color: #0f172a;
+}
+
+body.light-theme .app-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+body.light-theme .auth-card,
+body.light-theme .card {
+  background: #ffffff;
+  border-color: #e5e7eb;
+}
+
+body.light-theme input,
+body.light-theme button {
+  background: #ffffff;
+  color: #0f172a;
 }

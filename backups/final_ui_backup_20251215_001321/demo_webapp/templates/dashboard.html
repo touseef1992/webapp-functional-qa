@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Demo Web App{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb-row">
+  <div class="breadcrumb">
+    <a class="disabled-link">Signup</a>
+    <span>&gt;</span>
+    <a class="disabled-link">Login</a>
+    <span>&gt;</span>
+    <span class="active">Dashboard</span>
+  </div>
+
+  <form method="POST" action="{{ url_for('logout') }}" class="logout-form">
+    <button type="submit" class="btn-logout">
+        Logout
+    </button>
+</form>
+</div>
+
+<div class="dashboard">
+
+  <!-- TITLE (NO CARD) -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Dashboard</h1>
+    <div class="dashboard-subtitle">
+      Signed in as <span>{{ session.get('user') }}</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="card stat-card">
+      <div class="label">Total Users</div>
+      <div class="value">322</div>
+    </div>
+    <div class="card stat-card">
+      <div class="label">Active Sessions</div>
+      <div class="value">44</div>
+    </div>
+    <div class="card stat-card">
+      <div class="label">Signups Today</div>
+      <div class="value">26</div>
+    </div>
+    <div class="card stat-card">
+      <div class="label">Open Issues</div>
+      <div class="value">5</div>
+    </div>
+  </div>
+
+  <!-- MAP + ACTIVITY -->
+  <div class="dashboard-grid">
+    <div class="card">
+      <h3>User Sessions Map</h3>
+      <div class="total-sessions horizontal">
+        <span>Total Sessions</span>
+        <span class="value">503</span>
+      </div>
+
+      <div class="region-grid">
+        <div><span class="dot na"></span>North America</div><div>75 (15%)</div>
+        <div><span class="dot sa"></span>South America</div><div>56 (11%)</div>
+        <div><span class="dot eu"></span>Europe</div><div>91 (18%)</div>
+        <div><span class="dot af"></span>Africa</div><div>73 (15%)</div>
+        <div><span class="dot as"></span>Asia</div><div>176 (35%)</div>
+        <div><span class="dot oc"></span>Oceania</div><div>31 (6%)</div>
+        <div><span class="dot an"></span>Antarctica</div><div>0 (0%)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Recent Activity</h3>
+      <ul class="activity">
+        <li><strong>New signup</strong> — alice@example.com</li>
+        <li><strong>Login</strong> — test1@example.com</li>
+        <li><strong>Failed login</strong> — unknown@example.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TRAFFIC + SIGNUPS -->
+  <div class="dashboard-grid bottom">
+    <div class="card">
+      <h3>Page Traffic (7 days)</h3>
+      <div class="mini-bars">
+        <span title="120"></span>
+        <span title="165"></span>
+        <span title="90"></span>
+        <span title="210"></span>
+        <span title="180"></span>
+        <span title="135"></span>
+        <span title="150"></span>
+      </div>
+      <div class="muted" style="margin-top:8px;">
+        Daily visitors: 120, 165, 90, 210, 180, 135, 150
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Recent Signups</h3>
+      <table class="table">
+        <tr><td>alice@example.com</td><td>16:55</td></tr>
+        <tr><td>test1@example.com</td><td>16:07</td></tr>
+        <tr><td>unknown@example.com</td><td>15:07</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -2,28 +2,30 @@
 {% block title %}Dashboard — Demo Web App{% endblock %}
 
 {% block content %}
-<div class="dashboard">
 
-  <!-- BREADCRUMB + LOGOUT -->
-  <div class="breadcrumb header-card">
-    <div>
-      <span class="muted">Signup</span>
-      <span>›</span>
-      <span class="muted">Login</span>
-      <span>›</span>
-      <strong>Dashboard</strong>
-    </div>
-
-    <a href="{{ url_for('logout') }}" class="btn-secondary">Logout</a>
+<div class="breadcrumb-row">
+  <div class="breadcrumb">
+    <a class="disabled-link">Signup</a>
+    <span>&gt;</span>
+    <a class="disabled-link">Login</a>
+    <span>&gt;</span>
+    <span class="active">Dashboard</span>
   </div>
 
-  <!-- HEADER CARD -->
-  <div class="card header-card">
-    <div>
-      <h1>Dashboard</h1>
-      <div class="muted">
-        Signed in as {{ session["user"] }}
-      </div>
+  <form method="POST" action="{{ url_for('logout') }}" class="logout-form">
+    <button type="submit" class="btn-logout">
+        Logout
+    </button>
+</form>
+</div>
+
+<div class="dashboard">
+
+  <!-- TITLE (NO CARD) -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Dashboard</h1>
+    <div class="dashboard-subtitle">
+      Signed in as <span>{{ session.get('user') }}</span>
     </div>
   </div>
 
@@ -31,15 +33,15 @@
   <div class="stats-grid">
     <div class="card stat-card">
       <div class="label">Total Users</div>
-      <div class="value">3</div>
+      <div class="value">322</div>
     </div>
     <div class="card stat-card">
       <div class="label">Active Sessions</div>
-      <div class="value">4</div>
+      <div class="value">44</div>
     </div>
     <div class="card stat-card">
       <div class="label">Signups Today</div>
-      <div class="value">2</div>
+      <div class="value">26</div>
     </div>
     <div class="card stat-card">
       <div class="label">Open Issues</div>
@@ -47,30 +49,26 @@
     </div>
   </div>
 
-  <!-- MAIN GRID -->
+  <!-- MAP + ACTIVITY -->
   <div class="dashboard-grid">
-
-    <!-- USER SESSIONS -->
     <div class="card">
       <h3>User Sessions Map</h3>
-
       <div class="total-sessions horizontal">
-        <span class="label">Total Sessions</span>
-        <span class="value">32</span>
+        <span>Total Sessions</span>
+        <span class="value">503</span>
       </div>
 
       <div class="region-grid">
-        <div><span class="dot na"></span>North America</div><div>14 (44%)</div>
-        <div><span class="dot sa"></span>South America</div><div>3 (9%)</div>
-        <div><span class="dot eu"></span>Europe</div><div>10 (31%)</div>
-        <div><span class="dot af"></span>Africa</div><div>1 (3%)</div>
-        <div><span class="dot as"></span>Asia</div><div>6 (19%)</div>
-        <div><span class="dot oc"></span>Oceania</div><div>1 (3%)</div>
+        <div><span class="dot na"></span>North America</div><div>75 (15%)</div>
+        <div><span class="dot sa"></span>South America</div><div>56 (11%)</div>
+        <div><span class="dot eu"></span>Europe</div><div>91 (18%)</div>
+        <div><span class="dot af"></span>Africa</div><div>73 (15%)</div>
+        <div><span class="dot as"></span>Asia</div><div>176 (35%)</div>
+        <div><span class="dot oc"></span>Oceania</div><div>31 (6%)</div>
         <div><span class="dot an"></span>Antarctica</div><div>0 (0%)</div>
       </div>
     </div>
 
-    <!-- ACTIVITY -->
     <div class="card">
       <h3>Recent Activity</h3>
       <ul class="activity">
@@ -79,16 +77,12 @@
         <li><strong>Failed login</strong> — unknown@example.com</li>
       </ul>
     </div>
-
   </div>
 
-  <!-- BOTTOM GRID -->
+  <!-- TRAFFIC + SIGNUPS -->
   <div class="dashboard-grid bottom">
-
-    <!-- PAGE TRAFFIC -->
     <div class="card">
       <h3>Page Traffic (7 days)</h3>
-
       <div class="mini-bars">
         <span title="120"></span>
         <span title="165"></span>
@@ -98,13 +92,11 @@
         <span title="135"></span>
         <span title="150"></span>
       </div>
-
-      <div class="muted" style="margin-top:10px;font-size:13px;">
+      <div class="muted" style="margin-top:8px;">
         Daily visitors: 120, 165, 90, 210, 180, 135, 150
       </div>
     </div>
 
-    <!-- SIGNUPS -->
     <div class="card">
       <h3>Recent Signups</h3>
       <table class="table">
@@ -113,7 +105,6 @@
         <tr><td>unknown@example.com</td><td>15:07</td></tr>
       </table>
     </div>
-
   </div>
 
 </div>

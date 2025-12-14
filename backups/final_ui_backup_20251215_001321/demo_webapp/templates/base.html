@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{% block title %}Demo Web App{% endblock %}</title>
+
+  <style>
+    :root {
+      --bg: #0f1113;
+      --card: #121416;
+      --muted: rgba(255,255,255,0.55);
+      --text: #e6eef6;
+      --accent: #3ea6ff;
+    }
+
+    html, body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      min-height: 100%;
+    }
+
+    .app-layout {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .header-left .subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .control-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .control-value {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      border: none;
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      width: 100%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+  </style>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const flashes = document.querySelectorAll(".flash-message");
+
+    flashes.forEach(flash => {
+        setTimeout(() => {
+            flash.classList.add("flash-hide");
+
+            setTimeout(() => {
+                flash.remove();
+            }, 400); // match CSS animation duration
+        }, 5000); // 5 seconds
+    });
+});
+</script>
+
+
+<body>
+<div class="app-layout">
+
+  <!-- HEADER -->
+  <header>
+    <div class="app-logo">
+  <svg
+    class="logo-svg"
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-label="Demo Web App Logo"
+  >
+    <circle cx="14" cy="14" r="13" stroke="#3B82F6" stroke-width="2"/>
+    <path
+      d="M8 14.5L12 18.5L20 9.5"
+      stroke="#3B82F6"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+
+  <div class="logo-text-group">
+    <span class="logo-text">Demo Web App</span>
+    <span class="app-subtitle">Signup · Login · Dashboard</span>
+  </div>
+</div>
+
+    <div class="header-right">
+      <div class="control-group">
+        <div class="control-label">Date</div>
+        <div id="current-date" class="control-value"></div>
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">Time</div>
+        <div id="current-time" class="control-value"></div>
+      </div>
+
+      <div class="theme-toggle-wrapper">
+  <button
+    id="themeToggle"
+    class="theme-toggle-btn"
+    type="button"
+    aria-label="Toggle theme"
+  >
+    <span id="themeIcon">🌙</span>
+    <span id="themeLabel">Dark</span>
+  </button>
+</div>
+
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flash-container" id="flash-container">
+    {% for category, message in messages %}
+        <div class="flash-message flash-{{ category }}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    This application demonstrates a <strong>professional end-to-end QA workflow</strong>
+    covering Signup, Login, and Dashboard flows.
+  </footer>
+
+</div>
+
+<script>
+  function updateDateTime() {
+    const now = new Date();
+    document.getElementById("current-date").textContent =
+      now.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    document.getElementById("current-time").textContent =
+      now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+  setInterval(updateDateTime, 1000);
+  updateDateTime();
+</script>
+
+<script>
+  (function () {
+    const body = document.body;
+    const toggleBtn = document.getElementById("themeToggle");
+    const icon = document.getElementById("themeIcon");
+    const label = document.getElementById("themeLabel");
+
+    if (!toggleBtn) return;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    applyTheme(savedTheme);
+
+    toggleBtn.addEventListener("click", () => {
+      const newTheme = body.classList.contains("light-theme")
+        ? "dark"
+        : "light";
+      applyTheme(newTheme);
+    });
+
+    function applyTheme(theme) {
+      if (theme === "light") {
+        body.classList.add("light-theme");
+        icon.textContent = "☀️";
+        label.textContent = "Light";
+      } else {
+        body.classList.remove("light-theme");
+        icon.textContent = "🌙";
+        label.textContent = "Dark";
+      }
+      localStorage.setItem("theme", theme);
+    }
+  })();
+</script>
+
+</body>
+</html>
